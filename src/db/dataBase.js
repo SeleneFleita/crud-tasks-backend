@@ -1,19 +1,21 @@
-const mysql2 = require('mysql2');
+const mysql = require('mysql2/promise');
 
-const connection = async () => {
 
-    const connection = await mysql2.createConnection({
-        host: "localhost",
-        user: "root",
-        database: "tasks_db",
-    })
+const dataBase = async () => {
 
-    return connection
-
-}
-module.exports = { connection }
-if (connection) {
-    console.log('se conectó correctamente a la base de datos');
-  } else {
-    console.error('fallo en conectar la base de datos:', error);
+  try {
+    const connection = await mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      database: 'tasks_bd'
+    });
+    console.log('Conexión exitosa');
+    return connection;
+  } catch (error) {
+    console.error('Error al conectar a la base de datos:', error);
+    throw error;
   }
+};
+
+
+module.exports = dataBase
