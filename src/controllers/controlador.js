@@ -1,9 +1,9 @@
-const dataBase = require("../db/dataBase.js"); //  Importación módulo de conexión
+import dataBase from "../db/dataBase.js"; //  Importación módulo de conexión
 
 
 
 //Obtener todas las tareas
-const obtenerTareas = async (req, res) => {
+ export const obtenerTareas = async (req, res) => {
     try {
         const connection = await dataBase();
         const [tasks] = await connection.query('SELECT * FROM tasks');
@@ -15,7 +15,7 @@ const obtenerTareas = async (req, res) => {
 };
 
 // //Obtener por id
-const obtenerTareasPorId = async (req, res) => {
+export const obtenerTareasPorId = async (req, res) => {
     const id = req.params.id
     if (!id) {
         return res.status(400).json({ error: 'El ID es requerido' });
@@ -31,7 +31,7 @@ const obtenerTareasPorId = async (req, res) => {
 };
 
 // //crear nueva tarea
-const anadirTareas = async (req, res) => {
+export const anadirTareas = async (req, res) => {
     try {
         const connection = await dataBase()
         const { title, description, isComplete } = req.body
@@ -52,7 +52,7 @@ const anadirTareas = async (req, res) => {
 }
 
 // actualizar 
-const actualizarTareaId = async (req, res) => {
+export const actualizarTarea = async (req, res) => {
     const id = req.params.id
     if (!id) {
         return res.status(400).json({ error: 'El Id es requerido para realizar una actualización' });
@@ -83,7 +83,7 @@ const actualizarTareaId = async (req, res) => {
 
 
 //Eliminar tarea 
-const eliminarTareaporId = async (req, res) => {
+export const eliminarTareaporId = async (req, res) => {
     const id = req.params.id
     if (!id) {
         return res.status(400).json({ error: 'El ID es requerido' });
@@ -103,5 +103,4 @@ const eliminarTareaporId = async (req, res) => {
     }
 }
 
-
-module.exports = { anadirTareas, obtenerTareas, obtenerTareasPorId, actualizarTareaId, eliminarTareaporId }
+export default { anadirTareas, obtenerTareas, actualizarTarea, obtenerTareasPorId, eliminarTareaporId }

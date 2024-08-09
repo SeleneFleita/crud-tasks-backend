@@ -4,17 +4,18 @@
 // // ○ PUT /task/:id: Actualizar una tarea específica por su ID.
 // // ○ DELETE /task/:id: Eliminar una tarea específica por su ID.
 
-const routes = require("express").Router()
-const { anadirTareas, obtenerTareas, obtenerTareasPorId, actualizarTareaId, eliminarTareaporId } = require("../controllers/controlador")
+import express from "express"
+const routes = express.Router()
+import { anadirTareas, obtenerTareas, actualizarTarea, obtenerTareasPorId, eliminarTareaporId } from '../controllers/controlador.js'
 
-routes.get('/tasks/', obtenerTareas),
+routes.get('/tasks/', obtenerTareas);
 routes.get('/tasks/:id/', obtenerTareasPorId);
-routes.put('/tasks/:id', actualizarTareaId);
+routes.put('/tasks/:id', actualizarTarea);
 routes.post('/tasks/', anadirTareas);
 routes.delete('/tasks/:id', eliminarTareaporId);
 
 
 
-module.exports = routes
+export default routes;
 
 
