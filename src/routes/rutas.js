@@ -8,6 +8,9 @@ import express from "express"
 const routes = express.Router()
 import { anadirTareas, obtenerTareas, actualizarTarea, obtenerTareasPorId, eliminarTareaporId } from '../controllers/controlador.js'
 
+
+
+
 routes.get('/tasks/', obtenerTareas);
 routes.get('/tasks/:id/', obtenerTareasPorId);
 routes.put('/tasks/:id', actualizarTarea);
